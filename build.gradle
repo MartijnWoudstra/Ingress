@@ -41,8 +41,12 @@ minecraft {
         version = config.minecraft_version + "-" + config.forge_version
         assetDir = "run/assets"
 }
-version = "${config.minecraft_version}-${config.mod_version}"
-
+if (System.getenv("BUILD_NUMBER") != null) {
+        version = "${config.minecraft_version}-${config.mod_version}-" + System.getenv("BUILD_NUMBER");
+}
+else {
+        version = "${config.minecraft_version}-${config.mod_version}"
+}
 //From sources, you can exclude stuff if you like, not required.
 processResources{
         from(sourceSets.main.resources.srcDirs) {
