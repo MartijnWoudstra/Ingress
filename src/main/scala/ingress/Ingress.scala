@@ -7,6 +7,7 @@ import ingress.core.proxy.CommonProxy
 import cpw.mods.fml.common.registry.GameRegistry
 import ingress.blocks.TestBlock
 import net.minecraft.block.Block
+import ingress.world.WorldGeneratorIngress
 
 /**
  * Created by MartijnWoudstra on 14-4-2014.
@@ -25,7 +26,7 @@ object Ingress {
 
   @EventHandler
   def init(event: FMLInitializationEvent){
-
+    GameRegistry.registerWorldGenerator(WorldGeneratorIngress, 1)
   }
 
   @EventHandler
@@ -34,16 +35,16 @@ object Ingress {
   }
 
   def addBlocks(){
-    def getUnlocalizedName(block: Block) : String = {
-      block.getUnlocalizedName.substring(block.getUnlocalizedName.indexOf(".") + 1)
-    }
-
     GameRegistry.registerBlock(TestBlock, getUnlocalizedName(TestBlock))
+  }
+
+  def getUnlocalizedName(block: Block) : String = {
+    block.getUnlocalizedName.substring(block.getUnlocalizedName.indexOf(".") + 1)
   }
 }
 
 object References{
-  final val Modid = "Ingress"
+  final val Modid = "ingress"
   final val Modname = "Ingress Mod"
   final val Version = "0.0.1"
   final val ClientSide = "ingress.core.proxy.ClientProxy"

@@ -2,7 +2,7 @@ package ingress.blocks
 
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
-import ingress.Strings
+import ingress.{Ingress, References, Strings}
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.client.renderer.texture.IIconRegister
 
@@ -14,6 +14,6 @@ object TestBlock extends Block(Material.rock){
   setCreativeTab(CreativeTabs.tabCombat)
 
   override def registerBlockIcons(iconRegister: IIconRegister){
-
+    blockIcon = iconRegister.registerIcon(References.Modid.toLowerCase + ":" + Ingress.getUnlocalizedName(this))
   }
 }
