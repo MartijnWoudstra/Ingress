@@ -32,7 +32,7 @@ object WorldGeneratorIngress extends IWorldGenerator{
    * @param zChunk chunk z coordinate
    */
   def generateOverworld(random: Random, world: World, xChunk: Int, zChunk: Int){
-    addFlowerSpawnOverworld(TestBlock, random, world, xChunk, zChunk, 10, 50, 1, 0, 120)
+    addPortalSpawnOverworld(TestBlock, random, world, xChunk, zChunk, 10, 50, 10, 0, 120)
   }
 
   /**
@@ -81,15 +81,15 @@ object WorldGeneratorIngress extends IWorldGenerator{
       val posX = blockXPos + random.nextInt(16)
       val posY = minY + random.nextInt(maxY - minY)
       val posZ = blockZPos + random.nextInt(16)
-      new WorldGenMinable(block, minVainSize + random.nextInt(maxVainSize - minVainSize), Blocks.stone).generate(world, random, posX, posY, posZ);
+      new WorldGenMinable(block, minVainSize + random.nextInt(maxVainSize - minVainSize), Blocks.stone).generate(world, random, posX, posY, posZ)
     }
   }
 
   /**
    *
-   * This method adds our block to the world.
+   * This method adds our protals to the world.
    * It randomizes the coordinates, and does that as many times, as defined in spawnChance.
-   * Then it gives all the params to WorldGenMinable, which handles the replacing of the ores for us.
+   * Then it gives all the params to WorldGenPortals, which handles the replacing of the ores for us.
    *
    *@param block The block you want to spawn
    *@param random The Random
@@ -102,12 +102,12 @@ object WorldGeneratorIngress extends IWorldGenerator{
    *@param minY lowest point to spawn
    *@param maxY highest point to spawn
    */
-  def addFlowerSpawnOverworld(block: Block, random: Random, world: World, blockXPos: Int, blockZPos: Int, minVainSize: Int, maxVainSize: Int, chancesToSpawn: Int, minY: Int, maxY: Int ){
+  def addPortalSpawnOverworld(block: Block, random: Random, world: World, blockXPos: Int, blockZPos: Int, minVainSize: Int, maxVainSize: Int, chancesToSpawn: Int, minY: Int, maxY: Int ){
     for(i <- 0 until chancesToSpawn){
       val posX = blockXPos + random.nextInt(16)
       val posY = minY + random.nextInt(maxY - minY)
       val posZ = blockZPos + random.nextInt(16)
-      new WorldGenFlowers(block).generate(world, random, posX, posY, posZ);
+      new WorldGenPortals(block).generate(world, random, posX, posY, posZ)
     }
   }
 }
