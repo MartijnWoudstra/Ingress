@@ -1,3 +1,5 @@
+
+//Getting all the libs required.
 buildscript {
     repositories {
         mavenCentral()
@@ -14,37 +16,65 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
-
 // find:
 apply plugin: 'forge'
 // add after:
 apply plugin: 'scala'
 
-version = "1.0"
-group= "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
+//Get the config file
+ext.configFile = file "build.properties"
 
-minecraft {
-    version = "1.7.2-10.12.0.1056"
-    assetDir = "eclipse/assets"
+//Read the config file.
+configFile.withReader {
+
+        def prop = new Properties()
+        prop.load(it)
+        ext.config = new ConfigSlurper().parse prop
 }
 
-processResources
-{
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+//Define some params.
+group = "Ingress"
+version = config.mod_version
+archivesBaseName = "Ingress"
 
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-        
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
+minecraft {
+        version = config.minecraft_version + "-" + config.forge_version
+        assetDir = "run/assets"
+}
+version = "${config.minecraft_version}-${config.mod_version}"
+
+//From sources, you can exclude stuff if you like, not required.
+processResources{
+        from(sourceSets.main.resources.srcDirs) {
+            //Exclude stuff if required
+        }
+}
+
+//get MavenCentral.
+repositories {
+        mavenCentral()
+}
+
+//Prefix for jar will be 'universal'
+jar {
+        appendix = 'universal'
+}
+
+// add a source jar
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    appendix = 'src'
+}
+
+// because the normal output has been made to be obfuscated
+task deobfJar(type: Jar) {
+        from sourceSets.main.output
+        appendix = 'deobf'
+}
+
+//Create the jars. Located in /build/libs
+//The *-universal-* is the right one!
+artifacts {
+        archives sourceJar
+        archives deobfJar
 }
