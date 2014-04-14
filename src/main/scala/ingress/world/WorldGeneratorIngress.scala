@@ -7,7 +7,7 @@ import net.minecraft.world.chunk.IChunkProvider
 import net.minecraft.block.Block
 import net.minecraft.world.gen.feature.{WorldGenFlowers, WorldGenMinable}
 import net.minecraft.init.Blocks
-import ingress.blocks.TestBlock
+import ingress.blocks.IngressPortalBlock
 
 /**
  * Created by MartijnWoudstra on 14-4-2014.
@@ -32,7 +32,7 @@ object WorldGeneratorIngress extends IWorldGenerator{
    * @param zChunk chunk z coordinate
    */
   def generateOverworld(random: Random, world: World, xChunk: Int, zChunk: Int){
-    addPortalSpawnOverworld(TestBlock, random, world, xChunk, zChunk, 10, 50, 10, 0, 120)
+    addPortalSpawnOverworld(IngressPortalBlock, random, world, xChunk, zChunk, 10, 50, 10, 0, 120)
   }
 
   /**

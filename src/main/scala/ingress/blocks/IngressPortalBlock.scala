@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.texture.IIconRegister
 /**
  * Created by MartijnWoudstra on 14-4-2014.
  */
-object TestBlock extends Block(Material.rock){
+object IngressPortalBlock extends Block(Material.rock){
   setBlockName(Strings.TestBlockName)
   setCreativeTab(CreativeTabs.tabCombat)
 
