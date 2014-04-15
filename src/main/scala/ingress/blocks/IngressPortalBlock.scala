@@ -21,9 +21,11 @@ object IngressPortalBlock extends Block(Material.rock) {
   }
 
   override def onBlockActivated(world: World, x: Int, y: Int, z: Int, entityPlayer: EntityPlayer, p_149727_6_ : Int, p_149727_7_ : Float, p_149727_8_ : Float, p_149727_9_ : Float): Boolean = {
-    val playerProperties: ExtendedPlayer = new ExtendedPlayer(entityPlayer)
-    playerProperties.addExoticMatter(10)
-    System.out.println("ExoticMatter = " + playerProperties.getExoticMatter)
+    if(!world.isRemote) {
+      val playerProperties: ExtendedPlayer = new ExtendedPlayer(entityPlayer)
+      playerProperties.addExoticMatter(10)
+      System.out.println("ExoticMatter = " + playerProperties.getExoticMatter)
+    }
     true
   }
 }

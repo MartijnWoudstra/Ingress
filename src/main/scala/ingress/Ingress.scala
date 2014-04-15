@@ -8,6 +8,8 @@ import cpw.mods.fml.common.registry.GameRegistry
 import ingress.blocks.IngressPortalBlock
 import net.minecraft.block.Block
 import ingress.world.WorldGeneratorIngress
+import net.minecraftforge.common.MinecraftForge
+import ingress.event.IngressEventHandler
 
 /**
  * Created by MartijnWoudstra on 14-4-2014.
@@ -27,6 +29,8 @@ object Ingress {
   @EventHandler
   def init(event: FMLInitializationEvent) {
     GameRegistry.registerWorldGenerator(WorldGeneratorIngress, 1)
+
+    MinecraftForge.EVENT_BUS.register(new IngressEventHandler())
   }
 
   @EventHandler
