@@ -20,30 +20,30 @@ object Ingress {
   var proxy: CommonProxy = null
 
   @EventHandler
-  def preInit(event: FMLPreInitializationEvent){
+  def preInit(event: FMLPreInitializationEvent) {
     addBlocks()
   }
 
   @EventHandler
-  def init(event: FMLInitializationEvent){
+  def init(event: FMLInitializationEvent) {
     GameRegistry.registerWorldGenerator(WorldGeneratorIngress, 1)
   }
 
   @EventHandler
-  def postInit(event: FMLPostInitializationEvent){
+  def postInit(event: FMLPostInitializationEvent) {
 
   }
 
-  def addBlocks(){
+  def addBlocks() {
     GameRegistry.registerBlock(IngressPortalBlock, getUnlocalizedName(IngressPortalBlock))
   }
 
-  def getUnlocalizedName(block: Block) : String = {
+  def getUnlocalizedName(block: Block): String = {
     block.getUnlocalizedName.substring(block.getUnlocalizedName.indexOf(".") + 1)
   }
 }
 
-object References{
+object References {
   final val Modid = "ingress"
   final val Modname = "Ingress Mod"
   final val Version = "0.0.1"
@@ -51,6 +51,6 @@ object References{
   final val ServerSide = "ingress.core.proxy.ServerProxy"
 }
 
-object Strings{
+object Strings {
   final val TestBlockName = "ingressPortalBlock"
 }
