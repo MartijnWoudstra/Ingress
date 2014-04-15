@@ -27,7 +27,7 @@ class WorldGenPortals(block: Block) extends WorldGenerator {
             world.setBlock(x, y, z, block)
 
           case 2 =>
-            world.setBlock(x, y-1, z, block)
+            world.setBlock(x, y-1, z, block) //branch test 
             world.setBlock(x, y, z, block)
             world.setBlock(x, y+1, z, block)
         }
