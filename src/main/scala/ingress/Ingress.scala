@@ -1,7 +1,7 @@
 package ingress
 
 import cpw.mods.fml.common.{SidedProxy, Mod}
-import cpw.mods.fml.common.Mod.{Instance, EventHandler}
+import cpw.mods.fml.common.Mod.EventHandler
 import cpw.mods.fml.common.event.{FMLPostInitializationEvent, FMLInitializationEvent, FMLPreInitializationEvent}
 import ingress.core.proxy.CommonProxy
 import cpw.mods.fml.common.registry.GameRegistry
@@ -19,7 +19,7 @@ import ingress.event.IngressEventHandler
 object Ingress {
 
   @SidedProxy(clientSide = References.ClientSide, serverSide = References.ServerSide)
-  val proxy: CommonProxy = null
+  var proxy: CommonProxy = null
 
   @EventHandler
   def preInit(event: FMLPreInitializationEvent) {
@@ -31,6 +31,8 @@ object Ingress {
     GameRegistry.registerWorldGenerator(WorldGeneratorIngress, 1)
 
     MinecraftForge.EVENT_BUS.register(new IngressEventHandler())
+
+    proxy.registerTileEntities()
   }
 
   @EventHandler

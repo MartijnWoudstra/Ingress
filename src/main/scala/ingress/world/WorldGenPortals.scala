@@ -4,7 +4,6 @@ import java.util.Random
 import net.minecraft.world.World
 import net.minecraft.world.gen.feature.WorldGenerator
 import net.minecraft.block.Block
-import net.minecraft.util.MathHelper
 
 /**
  * WorldGenPortals
@@ -33,14 +32,8 @@ class WorldGenPortals(block: Block) extends WorldGenerator {
         //  }
         //
 
-        world.setBlock(x, y, z, block, MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3, 3)
-        findResonator(world,randon,x,y,z,block)
       }
     }
     true
-  }
-
-  def findResonator(world: World, random: Random, x: Int, y: Int, z: Int, block: Block){
-    //TODO
   }
 }

@@ -1,6 +1,6 @@
 package ingress.blocks
 
-import net.minecraft.block.{ITileEntityProvider, Block}
+import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import ingress.{Ingress, References, Strings}
 import net.minecraft.creativetab.CreativeTabs
@@ -22,8 +22,8 @@ object IngressPortalBlock extends Block(Material.rock) {
     blockIcon = iconRegister.registerIcon(References.Modid.toLowerCase + ":" + Ingress.getUnlocalizedName(this))
   }
 
-  override def onBlockActivated(world: World, x: Int, y: Int, z: Int, entityPlayer: EntityPlayer, par1 : Int, par2 : Float, par3 : Float, par4 : Float): Boolean = {
-    if(!world.isRemote) {
+  override def onBlockActivated(world: World, x: Int, y: Int, z: Int, entityPlayer: EntityPlayer, par1: Int, par2: Float, par3: Float, par4: Float): Boolean = {
+    if (!world.isRemote) {
       val playerProperties: ExtendedPlayer = entityPlayer.getExtendedProperties("ExtendedPlayer").asInstanceOf[ExtendedPlayer]
       playerProperties.addExoticMatter(10)
       System.out.println("ExoticMatter = " + playerProperties.getExoticMatter)
@@ -32,7 +32,7 @@ object IngressPortalBlock extends Block(Material.rock) {
     true
   }
 
-  override def createTileEntity (world: World, metadata: Int): TileEntity ={
+  override def createTileEntity(world: World, metadata: Int): TileEntity = {
     new TileEntityPortalBlock
   }
 }

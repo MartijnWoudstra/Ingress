@@ -11,7 +11,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent
 class IngressEventHandler {
   @SubscribeEvent
   def onEntityConstructing(event: EntityConstructing) {
-    if(event.entity.isInstanceOf[EntityPlayer]) {
+    if (event.entity.isInstanceOf[EntityPlayer]) {
       val extededPlayer: ExtendedPlayer = new ExtendedPlayer(event.entity.asInstanceOf[EntityPlayer])
       if (event.entity.isInstanceOf[EntityPlayer] && extededPlayer.get(event.entity.asInstanceOf[EntityPlayer]) == null) {
         extededPlayer.register(event.entity.asInstanceOf[EntityPlayer])
