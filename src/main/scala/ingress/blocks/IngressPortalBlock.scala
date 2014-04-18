@@ -10,12 +10,14 @@ import net.minecraft.entity.player.EntityPlayer
 import ingress.entity.ExtendedPlayer
 import net.minecraft.tileentity.TileEntity
 import ingress.tileentities.TileEntityPortalBlock
+import net.minecraft.entity.EntityLivingBase
+import net.minecraft.item.ItemStack
 
 /**
  * Created by MartijnWoudstra on 14-4-2014.
  */
 object IngressPortalBlock extends Block(Material.rock) {
-  setBlockName(Strings.TestBlockName)
+  setBlockName(Strings.IngressPortalBlockName)
   setCreativeTab(CreativeTabs.tabCombat)
 
   override def registerBlockIcons(iconRegister: IIconRegister) {
@@ -34,5 +36,14 @@ object IngressPortalBlock extends Block(Material.rock) {
 
   override def createTileEntity(world: World, metadata: Int): TileEntity = {
     new TileEntityPortalBlock
+  }
+
+  override def onBlockPlacedBy(world: World, x: Int, y: Int, z: Int, entityLivingBase: EntityLivingBase, itemStack: ItemStack) {
+    super.onBlockPlacedBy(world, x, y, z, entityLivingBase, itemStack)
+    world.setBlock(x, y+1, z, IngressPortalBlockTop)
+  }
+
+  override def canPlaceBlockAt(world: World, x: Int, y: Int, z: Int): Boolean = {
+    world.isAirBlock(x, y+1, z) && super.canPlaceBlockAt(world, x, y, z)
   }
 }
