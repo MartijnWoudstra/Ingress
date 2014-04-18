@@ -31,7 +31,7 @@ object WorldGeneratorIngress extends IWorldGenerator {
    * @param zChunk chunk z coordinate
    */
   def generateOverworld(random: Random, world: World, xChunk: Int, zChunk: Int) {
-    addPortalSpawnOverworld(IngressPortalBlock, random, world, xChunk, zChunk, 10, 50, 10, 0, 120)
+    addPortalSpawnOverworld(IngressPortalBlock, random, world, xChunk, zChunk, 10, 50, 20, 0, 120)
   }
 
   /**

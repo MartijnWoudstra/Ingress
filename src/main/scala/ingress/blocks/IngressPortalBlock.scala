@@ -5,7 +5,7 @@ import net.minecraft.block.material.Material
 import ingress.{Ingress, References, Strings}
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.world.World
+import net.minecraft.world.{Explosion, World}
 import net.minecraft.entity.player.EntityPlayer
 import ingress.entity.ExtendedPlayer
 import net.minecraft.tileentity.TileEntity
@@ -45,5 +45,10 @@ object IngressPortalBlock extends Block(Material.rock) {
 
   override def canPlaceBlockAt(world: World, x: Int, y: Int, z: Int): Boolean = {
     world.isAirBlock(x, y+1, z) && super.canPlaceBlockAt(world, x, y, z)
+  }
+
+  override def onNeighborBlockChange(world: World, x: Int, y: Int, z: Int, block: Block){
+    if(world.getBlock(x,y+1,z) != IngressPortalBlockTop)
+      world.setBlockToAir(x,y,z)
   }
 }

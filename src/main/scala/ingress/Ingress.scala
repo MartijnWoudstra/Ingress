@@ -5,7 +5,7 @@ import cpw.mods.fml.common.Mod.EventHandler
 import cpw.mods.fml.common.event.{FMLPostInitializationEvent, FMLInitializationEvent, FMLPreInitializationEvent}
 import ingress.core.proxy.CommonProxy
 import cpw.mods.fml.common.registry.GameRegistry
-import ingress.blocks.IngressPortalBlock
+import ingress.blocks.{IngressPortalBlockTop, IngressPortalBlock}
 import net.minecraft.block.Block
 import ingress.world.WorldGeneratorIngress
 import net.minecraftforge.common.MinecraftForge
@@ -42,6 +42,7 @@ object Ingress {
 
   def addBlocks() {
     GameRegistry.registerBlock(IngressPortalBlock, getUnlocalizedName(IngressPortalBlock))
+    GameRegistry.registerBlock(IngressPortalBlockTop, getUnlocalizedName(IngressPortalBlockTop))
   }
 
   def getUnlocalizedName(block: Block): String = {
@@ -58,5 +59,6 @@ object References {
 }
 
 object Strings {
-  final val TestBlockName = "ingressPortalBlock"
+  final val IngressPortalBlockTopName = "IngressPortalBlockTop"
+  final val IngressPortalBlockName = "ingressPortalBlock"
 }

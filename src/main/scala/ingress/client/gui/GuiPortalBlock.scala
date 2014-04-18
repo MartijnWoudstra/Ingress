@@ -17,8 +17,6 @@ class GuiPortalBlock(inventory: InventoryPlayer, tileEntity: TileEntityPortalBlo
   xSize = 12 //TODO Adjust to gui texture size
   ySize = 12
 
-  //TODO Adjust to gui texture size
-
   override def drawGuiContainerBackgroundLayer(float: Float, mouseX: Int, mouseZ: Int) {
     FMLClientHandler.instance().getClient.getTextureManager.bindTexture(texture)
     val x: Int = (this.width + xSize) / 2
